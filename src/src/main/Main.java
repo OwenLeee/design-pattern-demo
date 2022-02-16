@@ -17,8 +17,7 @@ import com.designpattern.adaptor.OldServiceAdaptor;
 import com.designpattern.factory.ConcreteCreatorRed;
 import com.designpattern.factory.ConcreteCreatorYellow;
 import com.designpattern.factory.Creator;
-
-import src.designpattern.singleton.Singleton;
+import com.designpattern.singleton.Singleton;
 
 public class Main {
 
