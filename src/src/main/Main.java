@@ -12,6 +12,8 @@ import com.designpattern.factory.ConcreteCreatorRed;
 import com.designpattern.factory.ConcreteCreatorYellow;
 import com.designpattern.factory.Creator;
 
+import src.designpattern.singleton.Singleton;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -40,6 +42,11 @@ public class Main {
 			smartphone.monitorResolution();
 			smartphone.isSupport5G();
 		}
+
+		// 3. Singleton
+		Singleton sg1 = Singleton.getInstance();
+		Singleton sg2 = Singleton.getInstance();
+		System.out.println(sg1 == sg2); //Return as true, confirm both instances are the same object
 
 	}
 
