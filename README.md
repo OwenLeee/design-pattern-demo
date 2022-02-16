@@ -5,3 +5,5 @@ A demo project to practice design-pattern in Java
 ### Creational Design Patterns
 1. Factory Method
 2. Abstract Factory
+3. Singleton
+4. Adaptor
