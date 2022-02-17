@@ -14,6 +14,10 @@ import com.designpattern.adaptor.OldService;
 import com.designpattern.adaptor.OldService2;
 import com.designpattern.adaptor.OldService2Adaptor;
 import com.designpattern.adaptor.OldServiceAdaptor;
+import com.designpattern.command.Light;
+import com.designpattern.command.LightOffCommand;
+import com.designpattern.command.LightOnCommand;
+import com.designpattern.command.RemoteControl;
 import com.designpattern.factory.ConcreteCreatorRed;
 import com.designpattern.factory.ConcreteCreatorYellow;
 import com.designpattern.factory.Creator;
@@ -22,7 +26,9 @@ import com.designpattern.singleton.Singleton;
 public class Main {
 
 	public static void main(String[] args) {
-		// 1. Factory Method
+		
+		/******************** 1. Creational - Factory Method ********************/
+		
 		Creator redFlowerCreator = new ConcreteCreatorRed();
 		Creator yellowFlowerCreator = new ConcreteCreatorYellow();
 
@@ -32,7 +38,9 @@ public class Main {
 			creator.waterFlower();
 		}
 
-		// 2. Abstract Factory
+		
+		/******************** 2. Creational - Abstract Factory ********************/
+		
 		TechFactory appleFactory = new AppleFactory();
 		TechFactory samsungFactory = new SamsungFactory();
 
@@ -48,12 +56,16 @@ public class Main {
 			smartphone.isSupport5G();
 		}
 
-		// 3. Singleton
+		
+		/******************** 3. Creational - Singleton ********************/
+		
 		Singleton sg1 = Singleton.getInstance();
 		Singleton sg2 = Singleton.getInstance();
 		System.out.println(sg1 == sg2); // Return as true, confirm both instances are the same object
 
-		// 4. Adaptor
+		
+		/******************** 4. Structural - Adaptor ********************/
+		
 		ConsumerClient consumerClient = new ConsumerClient();
 		NewDataFormat newData = new NewDataFormat();
 
@@ -74,6 +86,22 @@ public class Main {
 		// Can compile and return true now
 		System.out.println(consumerClient.consumeData(oldServiceAdaptor));
 		System.out.println(consumerClient.consumeData(oldService2Adaptor));
+
+		
+		/******************** 5. Behavioral - Command ********************/
+		
+		Light light = new Light();
+
+		// Create commands
+		LightOnCommand lightOnCommand = new LightOnCommand(light);
+		LightOffCommand lightOffCommand = new LightOffCommand(light);
+
+		RemoteControl remoteControl = new RemoteControl();
+		remoteControl.setCommand(lightOnCommand);
+		remoteControl.pressButton();
+
+		remoteControl.setCommand(lightOffCommand);
+		remoteControl.pressButton();
 
 	}
 

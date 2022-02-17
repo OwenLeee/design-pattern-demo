@@ -12,3 +12,4 @@ A demo project to practice design-pattern in Java
 
 
 ### Behavioral Design Patterns
+5. Command
