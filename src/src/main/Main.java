@@ -21,6 +21,11 @@ import com.designpattern.command.RemoteControl;
 import com.designpattern.factory.ConcreteCreatorRed;
 import com.designpattern.factory.ConcreteCreatorYellow;
 import com.designpattern.factory.Creator;
+import com.designpattern.observer.EmailNotificationListener;
+import com.designpattern.observer.MarketingOperator;
+import com.designpattern.observer.MessageManager;
+import com.designpattern.observer.SmsNotificationListener;
+import com.designpattern.observer.SubscriptionType;
 import com.designpattern.singleton.Singleton;
 
 public class Main {
@@ -102,6 +107,30 @@ public class Main {
 
 		remoteControl.setCommand(lightOffCommand);
 		remoteControl.pressButton();
+		
+		/******************** 6. Behavioral - Command ********************/
+		MessageManager messageManager = new MessageManager();
+		MarketingOperator marketingOperator = new MarketingOperator(messageManager);
+		
+		SmsNotificationListener smsNotificationListener1 = new SmsNotificationListener("Peter's");
+		SmsNotificationListener smsNotificationListener2 = new SmsNotificationListener("Ken's");
+
+		EmailNotificationListener emailNotificationListener1 = new EmailNotificationListener("Mary's");
+		EmailNotificationListener emailNotificationListener2 = new EmailNotificationListener("Jane's");
+		
+		messageManager.subscribe(SubscriptionType.SMS, smsNotificationListener1);
+		messageManager.subscribe(SubscriptionType.SMS, smsNotificationListener2);
+		
+		messageManager.subscribe(SubscriptionType.EMAIL, emailNotificationListener1);
+		messageManager.subscribe(SubscriptionType.EMAIL, emailNotificationListener2);
+		
+		marketingOperator.sendSmsMsg("Testing Sms!");
+		marketingOperator.sendEmailMsg("Testing Email!");
+		
+		messageManager.unsubscribe(SubscriptionType.EMAIL, emailNotificationListener1);
+	
+		marketingOperator.sendEmailMsg("Mary has unsubsribed Email!");
+		
 
 	}
 
