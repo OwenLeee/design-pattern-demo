@@ -14,6 +14,11 @@ import com.designpattern.adaptor.OldService;
 import com.designpattern.adaptor.OldService2;
 import com.designpattern.adaptor.OldService2Adaptor;
 import com.designpattern.adaptor.OldServiceAdaptor;
+import com.designpattern.builder.Condo;
+import com.designpattern.builder.CondoBuilder;
+import com.designpattern.builder.Director;
+import com.designpattern.builder.House;
+import com.designpattern.builder.HouseBuilder;
 import com.designpattern.command.Light;
 import com.designpattern.command.LightOffCommand;
 import com.designpattern.command.LightOnCommand;
@@ -31,9 +36,9 @@ import com.designpattern.singleton.Singleton;
 public class Main {
 
 	public static void main(String[] args) {
-		
+
 		/******************** 1. Creational - Factory Method ********************/
-		
+
 		Creator redFlowerCreator = new ConcreteCreatorRed();
 		Creator yellowFlowerCreator = new ConcreteCreatorYellow();
 
@@ -43,9 +48,8 @@ public class Main {
 			creator.waterFlower();
 		}
 
-		
 		/******************** 2. Creational - Abstract Factory ********************/
-		
+
 		TechFactory appleFactory = new AppleFactory();
 		TechFactory samsungFactory = new SamsungFactory();
 
@@ -61,16 +65,14 @@ public class Main {
 			smartphone.isSupport5G();
 		}
 
-		
 		/******************** 3. Creational - Singleton ********************/
-		
+
 		Singleton sg1 = Singleton.getInstance();
 		Singleton sg2 = Singleton.getInstance();
 		System.out.println(sg1 == sg2); // Return as true, confirm both instances are the same object
 
-		
 		/******************** 4. Structural - Adaptor ********************/
-		
+
 		ConsumerClient consumerClient = new ConsumerClient();
 		NewDataFormat newData = new NewDataFormat();
 
@@ -92,9 +94,8 @@ public class Main {
 		System.out.println(consumerClient.consumeData(oldServiceAdaptor));
 		System.out.println(consumerClient.consumeData(oldService2Adaptor));
 
-		
 		/******************** 5. Behavioral - Command ********************/
-		
+
 		Light light = new Light();
 
 		// Create commands
@@ -107,30 +108,48 @@ public class Main {
 
 		remoteControl.setCommand(lightOffCommand);
 		remoteControl.pressButton();
-		
+
 		/******************** 6. Behavioral - Command ********************/
 		MessageManager messageManager = new MessageManager();
 		MarketingOperator marketingOperator = new MarketingOperator(messageManager);
-		
+
 		SmsNotificationListener smsNotificationListener1 = new SmsNotificationListener("Peter's");
 		SmsNotificationListener smsNotificationListener2 = new SmsNotificationListener("Ken's");
 
 		EmailNotificationListener emailNotificationListener1 = new EmailNotificationListener("Mary's");
 		EmailNotificationListener emailNotificationListener2 = new EmailNotificationListener("Jane's");
-		
+
 		messageManager.subscribe(SubscriptionType.SMS, smsNotificationListener1);
 		messageManager.subscribe(SubscriptionType.SMS, smsNotificationListener2);
-		
+
 		messageManager.subscribe(SubscriptionType.EMAIL, emailNotificationListener1);
 		messageManager.subscribe(SubscriptionType.EMAIL, emailNotificationListener2);
-		
+
 		marketingOperator.sendSmsMsg("Testing Sms!");
 		marketingOperator.sendEmailMsg("Testing Email!");
-		
+
 		messageManager.unsubscribe(SubscriptionType.EMAIL, emailNotificationListener1);
-	
+
 		marketingOperator.sendEmailMsg("Mary has unsubsribed Email!");
-		
+
+		/******************** 7. Creational - Builder ********************/
+		CondoBuilder condoBuilder = new CondoBuilder();
+		HouseBuilder houseBuilder = new HouseBuilder();
+
+		Director director = new Director();
+		director.setBuilder(condoBuilder);
+		director.constructCondo();
+		Condo newCondo = condoBuilder.getProduct();
+		System.out
+				.println("New Condo has " + newCondo.getWindows() + " windows, " + newCondo.getBalcony() + " balcony, "
+						+ newCondo.getAirConditioner() + " air conditioner, " + newCondo.getHeater() + " heater.");
+
+		director.setBuilder(houseBuilder);
+		director.constructHouse();
+		House newHouse = houseBuilder.getProduct();
+		System.out
+				.println("New House has " + newHouse.getWindows() + " windows, " + newHouse.getBalcony() + " balcony, "
+						+ newHouse.getAirConditioner() + " air conditioner, " + newHouse.getHeater() + " heater.");
 
 	}
 
