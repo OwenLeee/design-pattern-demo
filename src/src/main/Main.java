@@ -14,6 +14,9 @@ import com.designpattern.adaptor.OldService;
 import com.designpattern.adaptor.OldService2;
 import com.designpattern.adaptor.OldService2Adaptor;
 import com.designpattern.adaptor.OldServiceAdaptor;
+import com.designpattern.bridge.JavaApplication;
+import com.designpattern.bridge.MongoDB;
+import com.designpattern.bridge.PostgreDB;
 import com.designpattern.builder.Condo;
 import com.designpattern.builder.CondoBuilder;
 import com.designpattern.builder.Director;
@@ -150,7 +153,23 @@ public class Main {
 		System.out
 				.println("New House has " + newHouse.getWindows() + " windows, " + newHouse.getBalcony() + " balcony, "
 						+ newHouse.getAirConditioner() + " air conditioner, " + newHouse.getHeater() + " heater.");
-
+		
+		/******************** 8. Structural - Bridge ********************/
+		PostgreDB pg = new PostgreDB();
+		MongoDB mongo = new MongoDB();
+		JavaApplication javaAppWithPostgreDB = new JavaApplication(pg);
+		javaAppWithPostgreDB.saveData("Save from pg");
+		javaAppWithPostgreDB.getDataById(123);
+		javaAppWithPostgreDB.updateDataById("New data saved");
+		javaAppWithPostgreDB.deleteDataById(123);
+		
+		JavaApplication javaAppWithMongoDB = new JavaApplication(mongo);
+		javaAppWithMongoDB.saveData("Save from mongo");
+		javaAppWithMongoDB.getDataById(3321312);
+		javaAppWithMongoDB.updateDataById("New object saved");
+		javaAppWithMongoDB.deleteDataById(3321312);
+		
+	
 	}
 
 }
