@@ -35,6 +35,7 @@ import com.designpattern.observer.MessageManager;
 import com.designpattern.observer.SmsNotificationListener;
 import com.designpattern.observer.SubscriptionType;
 import com.designpattern.singleton.Singleton;
+import com.designpattern.state.Girlfriend;
 
 public class Main {
 
@@ -168,6 +169,19 @@ public class Main {
 		javaAppWithMongoDB.getDataById(3321312);
 		javaAppWithMongoDB.updateDataById("New object saved");
 		javaAppWithMongoDB.deleteDataById(3321312);
+		
+		/******************** 9. Behavioral - State ********************/
+		System.out.println("--------------------------");
+		Girlfriend gf = new Girlfriend();
+		gf.goToShoppoing();
+		gf.getHungry();
+		gf.goToWork();
+		gf.goToShoppoing();
+		gf.listenAJoke();
+		gf.offWork();
+		gf.listenAJoke();
+		gf.goToShoppoing();
+		
 		
 	
 	}
