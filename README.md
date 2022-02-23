@@ -3,14 +3,17 @@ A demo project to practice design-pattern in Java
 
 # Pattern List
 ### Creational Design Patterns
-1. Factory Method
-2. Abstract Factory
-3. Singleton
+- Factory Method
+- Abstract Factory
+- Singleton
+- Builder
 
 ### Structural Design Patterns
-4. Adaptor
+- Adaptor
+- Bridge
 
 
 ### Behavioral Design Patterns
-5. Command
-6. Observer
+- Command
+- Observer
+- State
