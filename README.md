@@ -17,3 +17,4 @@ A demo project to practice design-pattern in Java
 - Command
 - Observer
 - State
+- Strategy

@@ -36,6 +36,10 @@ import com.designpattern.observer.SmsNotificationListener;
 import com.designpattern.observer.SubscriptionType;
 import com.designpattern.singleton.Singleton;
 import com.designpattern.state.Girlfriend;
+import com.designpattern.strategy.CheapestStrategy;
+import com.designpattern.strategy.FastestStrategy;
+import com.designpattern.strategy.RelaxStrategy;
+import com.designpattern.strategy.Suggestor;
 
 public class Main {
 
@@ -154,7 +158,7 @@ public class Main {
 		System.out
 				.println("New House has " + newHouse.getWindows() + " windows, " + newHouse.getBalcony() + " balcony, "
 						+ newHouse.getAirConditioner() + " air conditioner, " + newHouse.getHeater() + " heater.");
-		
+
 		/******************** 8. Structural - Bridge ********************/
 		PostgreDB pg = new PostgreDB();
 		MongoDB mongo = new MongoDB();
@@ -163,13 +167,13 @@ public class Main {
 		javaAppWithPostgreDB.getDataById(123);
 		javaAppWithPostgreDB.updateDataById("New data saved");
 		javaAppWithPostgreDB.deleteDataById(123);
-		
+
 		JavaApplication javaAppWithMongoDB = new JavaApplication(mongo);
 		javaAppWithMongoDB.saveData("Save from mongo");
 		javaAppWithMongoDB.getDataById(3321312);
 		javaAppWithMongoDB.updateDataById("New object saved");
 		javaAppWithMongoDB.deleteDataById(3321312);
-		
+
 		/******************** 9. Behavioral - State ********************/
 		System.out.println("--------------------------");
 		Girlfriend gf = new Girlfriend();
@@ -181,9 +185,23 @@ public class Main {
 		gf.offWork();
 		gf.listenAJoke();
 		gf.goToShoppoing();
-		
-		
-	
+
+		/******************** 10. Behavioral - Strategy ********************/
+		FastestStrategy fatestStrategy = new FastestStrategy();
+		RelaxStrategy relaxStrategy = new RelaxStrategy();
+		CheapestStrategy cheapestStrategy = new CheapestStrategy();
+
+		Suggestor transportationStrategy = new Suggestor();
+
+		transportationStrategy.setTransportationStrategy(fatestStrategy);
+		transportationStrategy.goToWorkSuggestion();
+
+		transportationStrategy.setTransportationStrategy(relaxStrategy);
+		transportationStrategy.goToWorkSuggestion();
+
+		transportationStrategy.setTransportationStrategy(cheapestStrategy);
+		transportationStrategy.goToWorkSuggestion();
+
 	}
 
 }
