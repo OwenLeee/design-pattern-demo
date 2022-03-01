@@ -26,6 +26,10 @@ import com.designpattern.command.Light;
 import com.designpattern.command.LightOffCommand;
 import com.designpattern.command.LightOnCommand;
 import com.designpattern.command.RemoteControl;
+import com.designpattern.composite.ChefConsultants;
+import com.designpattern.composite.ChineseChef;
+import com.designpattern.composite.ItalianChef;
+import com.designpattern.composite.JapaneseChef;
 import com.designpattern.factory.ConcreteCreatorRed;
 import com.designpattern.factory.ConcreteCreatorYellow;
 import com.designpattern.factory.Creator;
@@ -201,6 +205,21 @@ public class Main {
 
 		transportationStrategy.setTransportationStrategy(cheapestStrategy);
 		transportationStrategy.goToWorkSuggestion();
+		
+		/******************** 11. Structural - Composite ********************/
+		ChineseChef chineseChef = new ChineseChef();
+		JapaneseChef japaneseChef = new JapaneseChef();
+		ItalianChef italianChef = new ItalianChef();
+		
+		ChefConsultants chefConsultants = new ChefConsultants();
+		
+		chefConsultants.addChef(chineseChef);
+		chefConsultants.addChef(japaneseChef);
+		chefConsultants.addChef(italianChef);
+		chefConsultants.makeADish();
+		
+
+		
 
 	}
 

@@ -11,6 +11,7 @@ A demo project to practice design-pattern in Java
 ### Structural Design Patterns
 - Adaptor
 - Bridge
+- Composite
 
 
 ### Behavioral Design Patterns
