@@ -12,6 +12,7 @@ A demo project to practice design-pattern in Java
 - Adaptor
 - Bridge
 - Composite
+- Decorator
 
 
 ### Behavioral Design Patterns

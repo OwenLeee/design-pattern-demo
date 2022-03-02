@@ -30,6 +30,9 @@ import com.designpattern.composite.ChefConsultants;
 import com.designpattern.composite.ChineseChef;
 import com.designpattern.composite.ItalianChef;
 import com.designpattern.composite.JapaneseChef;
+import com.designpattern.decorator.DefaultFighter;
+import com.designpattern.decorator.DefensiveFighterDecorator;
+import com.designpattern.decorator.PowerFighterDecorator;
 import com.designpattern.factory.ConcreteCreatorRed;
 import com.designpattern.factory.ConcreteCreatorYellow;
 import com.designpattern.factory.Creator;
@@ -218,8 +221,23 @@ public class Main {
 		chefConsultants.addChef(italianChef);
 		chefConsultants.makeADish();
 		
+		/******************** 12. Structural - Decorator ********************/
+		DefaultFighter fighter1 = new DefaultFighter("fighter1");
+		DefaultFighter fighter2 = new DefaultFighter("fighter2");
+		DefaultFighter fighter3 = new DefaultFighter("fighter3");
 
+
+		fighter1.attack(fighter2);
+		System.out.println("--------------------------");
+		PowerFighterDecorator powerDecorator = new PowerFighterDecorator(fighter1);
+		powerDecorator.attack(fighter2);
+		powerDecorator.specialAttack(fighter2);
+		System.out.println("--------------------------");
 		
+		DefensiveFighterDecorator defensiveFighterDecorator = new DefensiveFighterDecorator(fighter3);
+		powerDecorator.attack(defensiveFighterDecorator);
+		powerDecorator.specialAttack(defensiveFighterDecorator);
+		System.out.println("--------------------------");
 
 	}
 
