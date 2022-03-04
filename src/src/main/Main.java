@@ -22,6 +22,9 @@ import com.designpattern.builder.CondoBuilder;
 import com.designpattern.builder.Director;
 import com.designpattern.builder.House;
 import com.designpattern.builder.HouseBuilder;
+import com.designpattern.chainOfResponsibility.FirstHandler;
+import com.designpattern.chainOfResponsibility.SecondHandler;
+import com.designpattern.chainOfResponsibility.ThirdHandler;
 import com.designpattern.command.Light;
 import com.designpattern.command.LightOffCommand;
 import com.designpattern.command.LightOnCommand;
@@ -239,6 +242,16 @@ public class Main {
 		powerDecorator.specialAttack(defensiveFighterDecorator);
 		System.out.println("--------------------------");
 
+		
+		/******************** 13. Behavioral - Chain of Responsibility ********************/
+		FirstHandler firstHandler = new FirstHandler();
+		SecondHandler secondHandler = new SecondHandler();
+		ThirdHandler thirdHandler = new ThirdHandler();
+		
+		firstHandler.setNext(secondHandler);
+		secondHandler.setNext(thirdHandler);
+		
+		firstHandler.handle();
 	}
 
 }

@@ -20,3 +20,5 @@ A demo project to practice design-pattern in Java
 - Observer
 - State
 - Strategy
+- Chain of Responsibility
+
