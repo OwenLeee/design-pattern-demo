@@ -44,6 +44,8 @@ import com.designpattern.observer.MarketingOperator;
 import com.designpattern.observer.MessageManager;
 import com.designpattern.observer.SmsNotificationListener;
 import com.designpattern.observer.SubscriptionType;
+import com.designpattern.prototype.MachineGun;
+import com.designpattern.prototype.ShortGun;
 import com.designpattern.singleton.Singleton;
 import com.designpattern.state.Girlfriend;
 import com.designpattern.strategy.CheapestStrategy;
@@ -252,6 +254,29 @@ public class Main {
 		secondHandler.setNext(thirdHandler);
 		
 		firstHandler.handle();
+		
+		/******************** 14. Creational - Prototype ********************/
+		ShortGun sg = new ShortGun();
+		sg.length = 10;
+		sg.weight = 20;
+		sg.noOfBullets = 12;
+		
+		ShortGun sgClone = (ShortGun) sg.clone();
+		
+		MachineGun mg = new MachineGun();
+		mg.length = 10;
+		mg.weight = 20;
+		mg.noOfBullets = 12;
+		
+		MachineGun mgClone = (MachineGun) mg.clone();
+		
+		System.out.println(sg.toString());
+		System.out.println(sgClone.toString());
+		System.out.println(mg.toString());
+		System.out.println(mgClone.toString());
+
+		
+		
 	}
 
 }

@@ -7,6 +7,7 @@ A demo project to practice design-pattern in Java
 - Abstract Factory
 - Singleton
 - Builder
+- Prototype
 
 ### Structural Design Patterns
 - Adaptor
